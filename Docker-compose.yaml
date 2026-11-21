@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: gestor-db
+    environment:
+      POSTGRES_USER: master
+      POSTGRES_PASSWORD: Caracol123
+      POSTGRES_DB: gestor_actividades
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

@@ -54,6 +54,23 @@ app.post('/tareas', async (req, res) => {
 
 });
 
+app.get('/tareas', async (req, res) => {
+    try {
+        const resultado = await pool.query('SELECT * FROM tareas ORDER BY created_at DESC');
+        res.status(200).json({
+            success: true,
+            tareas: resultado.rows
+        });
+    } catch (error) {
+        console.error('Error al buscar las tareas', error);
+        res.status(500).json({
+            success: false,
+            mensaje: 'No se pudieron obtener las tareas'
+        });
+    }
+});
+
+
 app.listen(3000, () => {
     console.log('Servidor en http://localhost:3000');
 });

@@ -5,4 +5,9 @@ async function obtenerTareas() {
     return resultado.rows;
 }
 
-module.exports = { obtenerTareas };
+async function obtenerTareaPorId(id) {
+    const resultado = await pool.query('SELECT * FROM tareas WHERE id = $1', [id]);
+    return resultado.rows[0];
+}
+
+module.exports = { obtenerTareas, obtenerTareaPorId };

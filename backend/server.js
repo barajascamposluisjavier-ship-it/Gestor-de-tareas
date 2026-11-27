@@ -1,6 +1,7 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const { pool } = require("./src/config/db");
+const { pool } = require('./src/config/db');
+const  tareasRoutes = require('./src/routes/tareas.routes')
 
 app.use(express.json());
 
@@ -24,6 +25,8 @@ app.get("/db-test", async (req, res) => {
     });
   }
 });
+
+app.use("/tareas", tareasRoutes);
 
 app.post("/tareas", async (req, res) => {
   const { user_id, title, description, category, limit_date } = req.body;
@@ -54,7 +57,7 @@ app.post("/tareas", async (req, res) => {
     });
   }
 });
-
+/*
 app.get("/tareas", async (req, res) => {
   try {
     const resultado = await pool.query(
@@ -72,7 +75,7 @@ app.get("/tareas", async (req, res) => {
     });
   }
 });
-
+*/
 app.put("/tareas/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -136,6 +139,8 @@ app.delete("/tareas/:id", async (req, res) => {
     });
   }
 });
+
+
 
 app.listen(3000, () => {
   console.log("Servidor en http://localhost:3000");

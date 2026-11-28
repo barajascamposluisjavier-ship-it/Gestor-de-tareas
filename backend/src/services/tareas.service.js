@@ -10,4 +10,12 @@ async function obtenerTareaPorId(id) {
     return resultado.rows[0];
 }
 
-module.exports = { obtenerTareas, obtenerTareaPorId };
+async function crearTarea({user_id, title, description, category, limit_date}) {
+    const resultado = await pool.query('INSERT INTO tareas (user_id, title, description, category, limit_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [user_id, title, description, category, limit_date]
+    );
+
+    return resultado.rows[0];
+}
+
+module.exports = { obtenerTareas, obtenerTareaPorId, crearTarea };

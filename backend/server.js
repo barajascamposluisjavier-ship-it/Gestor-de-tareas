@@ -5,6 +5,8 @@ const  tareasRoutes = require('./src/routes/tareas.routes')
 
 app.use(express.json());
 
+app.use('/tareas', tareasRoutes);
+
 app.get("/", (req, res) => {
   res.send("Hola el servidor funciona");
 });
@@ -26,8 +28,7 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
-app.use("/tareas", tareasRoutes);
-
+/*
 app.post("/tareas", async (req, res) => {
   const { user_id, title, description, category, limit_date } = req.body;
 
@@ -57,6 +58,7 @@ app.post("/tareas", async (req, res) => {
     });
   }
 });
+*/
 /*
 app.get("/tareas", async (req, res) => {
   try {
@@ -139,6 +141,7 @@ app.delete("/tareas/:id", async (req, res) => {
     });
   }
 });
+
 
 
 
